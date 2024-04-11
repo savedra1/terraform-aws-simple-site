@@ -4,7 +4,7 @@ module "acm" {
   count = var.DOMAIN_NAME != "" ? 1 : 0
   source      = "./modules/acm"
   domain_name = var.DOMAIN_NAME
-  cert_record = module.route53.cert_record
+  cert_record = module.route53[0].cert_record
   providers = {
     aws = aws.acm_provider
   }
@@ -15,7 +15,7 @@ module "cloudfront_with_domain" {
   count = var.DOMAIN_NAME != "" ? 1 : 0
   source          = "./modules/cloudfront_custom"
   domain_name     = var.DOMAIN_NAME
-  cert_id =  module.acm[*].cert_id
+  cert_id =  module.acm[0].cert_arn
   regional_domain = module.s3.regional_domain
   origin_id       = module.s3.origin_id
 }
@@ -31,14 +31,13 @@ module "cloudfront_without_domain" {
 # Route53
 module "route53" {
   count = var.DOMAIN_NAME != "" ? 1 : 0
-
   source                    = "./modules/route53"
   domain_name               = var.DOMAIN_NAME
   region                    = var.AWS_REGION
   bucket_zone_id            = module.s3.bucket_zone_id
-  cloudfront_endpoint       = module.cloudfront_with_domain.cloudfront_endpoint
-  cloudfront_zone_id        = module.cloudfront_with_domain.cloudfront_zone_id
-  domain_validation_options = module.acm[*].domain_validation_options
+  cloudfront_endpoint       = module.cloudfront_with_domain[0].cloudfront_endpoint
+  cloudfront_zone_id        = module.cloudfront_with_domain[0].cloudfront_zone_id
+  domain_validation_options = module.acm[0].domain_validation_options
   
 }
 
