@@ -12,11 +12,11 @@ variable "content_types" {
 }
 
 resource "aws_s3_object" "bucket_objects" {
-  for_each     = fileset(var.files_directory, "*")
-  bucket       = aws_s3_bucket.test_bucket.id
+  for_each     = fileset(var.filepath, "*")
+  bucket       = aws_s3_bucket.static_website.id
   key          = basename(each.value)
-  source       = "${var.files_directory}/${each.value}"
-  etag         = filemd5("${var.files_directory}/${each.value}")
+  source       = "${var.filepath}/${each.value}"
+  etag         = filemd5("${var.filepath}/${each.value}")
   content_type = try(var.content_types[split(".", each.value)[1]], "application/octet-stream")
 }
 
