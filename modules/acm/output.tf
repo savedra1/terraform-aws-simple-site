@@ -1,7 +1,3 @@
-
-variable "domain_name" {}
-variable "cert_record" {}
-
 output "cert_arn" {
   value = aws_acm_certificate.domain_cert[*].arn
 }
