@@ -24,14 +24,8 @@ variable "SITE_BUCKET" {
 
 variable "DIRECTORY" {
   type        = string
-  default     = "./"
+  default     = "./objects"
   description = "The path for where the files are stored for your S3 bucket. All files in this directory will be uploaded."
-}
-
-variable "S3_OBJECTS_PATH" {
-  type        = string
-  default     = "./"
-  description = "The path to the files used for your static site from the directory where this module will be ran. Default: './' (same as terraform dir)"
 }
 
 variable "INDEX_FILE_NAME" {
