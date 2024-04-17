@@ -70,18 +70,18 @@ variable "domain_name" { # OPTIONAL
 
 variable "domain_auto_renew" { # OPTIONAL
   type = bool
-  default = false # True
+  default = true
   description = "States whether to assign auto-renewal to the managed Route53 domain." 
 }
 
 variable "enable_logging" { # OPTIONAL
   type = bool
-  default = true #false
+  default = false
   description = "States whether to enable server logs for the static site."
 }
 
 variable "enable_www_redirect" { # OPTIONAL
   type = bool
-  default = true #false
+  default = false
   description = "States whether to create an additional route53 record for redirecting the domain with 'www.'."
 }
