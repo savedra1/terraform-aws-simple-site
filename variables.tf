@@ -79,9 +79,3 @@ variable "enable_logging" { # OPTIONAL
   default = false
   description = "States whether to enable server logs for the static site."
 }
-
-variable "enable_www_redirect" { # OPTIONAL
-  type = bool
-  default = false
-  description = "States whether to create an additional route53 record for redirecting the domain with 'www.'."
-}
