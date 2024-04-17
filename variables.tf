@@ -18,10 +18,10 @@ variable "aws_region" {
 
 variable "site_bucket" {
   type        = string
-  default     = "savedra-moduletest2024"
+  default     = "abiwithey.co.uk"
   description = "The name of the S3 bucket used for for hosting your static site. Note that if using a custom domain, the bucket should be named the same thing. Eg - name the bucket 'example.com' if that is the name of your domain."
   validation {
-    condition = var.site_bucket != ""
+    condition     = var.site_bucket != ""
     error_message = "MISSING INPUT FOR MODULE | You need to specifify the name of your S3 site bucket for 'site_bucket'"
   }
 }
@@ -37,7 +37,7 @@ variable "index_file_name" { # OPTION
   default     = "index.html"
   description = "The file name for the index document of the static site. Default: 'index.html'"
   validation {
-    condition = can(regex("^[a-zA-Z0-9_\\-. ]+(\\.[a-zA-Z0-9]+)$", var.index_file_name))
+    condition     = can(regex("^[a-zA-Z0-9_\\-. ]+(\\.[a-zA-Z0-9]+)$", var.index_file_name))
     error_message = "INVALID INDEX FILE | Please specifiy a valid filename for 'index_file_name' or do not include this to use the default 'index.html'"
   }
 }
@@ -47,7 +47,7 @@ variable "error_file_name" { # OPTIONAL
   default     = "error.html"
   description = "The file name for the error document of the static site. Default: 'error.html'"
   validation {
-    condition = can(regex("^[a-zA-Z0-9_\\-. ]+(\\.[a-zA-Z0-9]+)$", var.error_file_name))
+    condition     = can(regex("^[a-zA-Z0-9_\\-. ]+(\\.[a-zA-Z0-9]+)$", var.error_file_name))
     error_message = "INVALID ERROR FILE | Please specifiy a valid filename for 'error_file_name' or do not include this to use the default 'error.html'"
   }
 }
@@ -60,13 +60,28 @@ variable "available_locations" { # OPTIONAL
 
 variable "domain_name" { # OPTIONAL
   type        = string
-  default     = ""
+  default     = "abiwithey.co.uk"
   description = "The privately owned qualified domain name. This must be managed by Route53."
   validation {
-    condition = can(regex("^$|^([a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\\.)+[a-zA-Z]{2,6}$", var.domain_name))
+    condition     = can(regex("^$|^([a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\\.)+[a-zA-Z]{2,6}$", var.domain_name))
     error_message = "INVALID DOMAIN NAME | Please specifiy a valid domain name for 'domain_name' or exclude this var to use an auto-generated alias."
   }
 }
 
+variable "domain_auto_renew" { # OPTIONAL
+  type = bool
+  default = false # True
+  description = "States whether to assign auto-renewal to the managed Route53 domain." 
+}
 
+variable "enable_logging" { # OPTIONAL
+  type = bool
+  default = true #false
+  description = "States whether to enable server logs for the static site."
+}
 
+variable "enable_www_redirect" { # OPTIONAL
+  type = bool
+  default = true #false
+  description = "States whether to create an additional route53 record for redirecting the domain with 'www.'."
+}

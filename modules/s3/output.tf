@@ -10,3 +10,6 @@ output "origin_id" {       # needed for cloudfront dist
     value = aws_s3_bucket.static_website.bucket_domain_name
 }
 
+output "log_bucket_name" {
+    value = var.logging_enabled ? "logs-${var.site_bucket_name}" : "n/a"
+}

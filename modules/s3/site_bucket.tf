@@ -23,4 +23,17 @@ resource "aws_s3_bucket_website_configuration" "website_config" {
   error_document {
     key = "error.html"
   }
+
+  routing_rules = <<EOF
+    [
+      {
+        "Condition": {
+          "KeyPrefixEquals": "www/"
+        },
+        "Redirect": {
+          "ReplaceKeyPrefixWith": ""
+        }
+      }
+    ]
+    EOF
 }

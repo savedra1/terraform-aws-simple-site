@@ -1,9 +1,6 @@
 
 
 
-
-
-
 #export TF_VAR_AVAILABLE_LOCATIONS=
 #export TF_VAR_ERROR_FILE_NAME=
 #export TF_VAR_INDEX_FILE_NAME=

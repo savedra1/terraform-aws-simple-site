@@ -34,15 +34,16 @@ resource "aws_route53_record" "cert_record" {
   zone_id         = aws_route53_zone.hosted_zone.zone_id
 }
 
-# For HTTP only via s3 bucket endpoint
-resource "aws_route53_record" "website_record" { 
-  zone_id = aws_route53_zone.hosted_zone.zone_id
-  name    = var.domain_name 
-  type    = "A"
-
-  alias {
-    name                   = "s3-website-${var.region}.amazonaws.com" 
-    zone_id                = var.bucket_zone_id
-    evaluate_target_health = false
-  }
-}
+## For HTTP only via s3 bucket endpoint
+#resource "aws_route53_record" "website_record" { 
+#  zone_id = aws_route53_zone.hosted_zone.zone_id
+#  name    = var.domain_name 
+#  type    = "A"
+#
+#  alias {
+#    name                   = "s3-website-${var.region}.amazonaws.com" 
+#    zone_id                = var.bucket_zone_id
+#    evaluate_target_health = false
+#  }
+#}
+#

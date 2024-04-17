@@ -1,16 +1,4 @@
 
-variable "content_types" {
-  type = map(string)
-  default = {
-    "html" = "text/html"
-    "css"  = "text/css"
-    "js"   = "application/javascript"
-    "pdf"  = "application/pdf"
-    "json" = "application/json"
-    # Any other file extensions will default to "application/octet-stream"
-  }
-}
-
 resource "aws_s3_object" "bucket_objects" {
   for_each     = fileset(var.object_directory, "*")
   bucket       = aws_s3_bucket.static_website.id
