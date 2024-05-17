@@ -251,3 +251,7 @@ Ensure the AWS user credentials used have the following permission scopes to all
 The only cost incurred from using this module would be from the Route53 Hosted Zone, created to validate an ACM certificate when a custom domain is used. The cost for this is $0.50 per month. 
 
 All other infrastructure falls within the AWS free tier. However, there could be some edge-case scenarios that cause additional costs. For more details of this please review the pricing documentation for [s3](https://aws.amazon.com/pm/serv-s3/pricing), [Cloudfront](https://aws.amazon.com/cloudfront/pricing/) and [Route53](https://aws.amazon.com/route53/pricing/).  
+
+### Contributing
+
+Contributions to this project are welcome! If you have any improvement ideas feel free to raise an issue or fork the repo to send me a PR. 
