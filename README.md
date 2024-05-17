@@ -5,8 +5,8 @@ This Terraform module allows you to easily spin up a static site with HTTPS supp
 The module is very easy to use and allows flexible configuration with optional inputs. 
 
 <br>
-<img src="./example_objects/example.png" alt="Centered Image">
-<br>
+
+![example](https://github.com/savedra1/terraform-aws-simple-site/assets/99875823/ce849c44-3be1-42f5-b81a-0e6b8c6e54e8)
 
 ## Usage
 
