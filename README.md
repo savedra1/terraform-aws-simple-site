@@ -18,7 +18,7 @@ You will need the following before using this module:
 - __(OPTIONAL)__ A S3 log bucket if you intend to set up logging for your site. 
 
 
-### Example a custom domain
+### Example with a custom domain
 
 ```hcl
 # Backend setup
@@ -31,11 +31,12 @@ terraform {
 }
 
 module "static_site" {
-    source = "savedra1/simple-site/aws"
-    aws_region = "us-west-1"
-    site_bucket = "mysitebucketname.com"
+    source           = "savedra1/simple-site/aws"
+    version          = "0.0.1"
+    aws_region       = "us-west-1"
+    site_bucket      = "mysitebucketname.com"
     object_directory = "./example_objects"
-    domain_name = "mydomainname.com"
+    domain_name      = "mydomainname.com"
 }
 
 ```
@@ -53,9 +54,10 @@ terraform {
 }
 
 module "static_site" {
-    source = "savedra1/simple-site/aws"
-    aws_region = "us-west-1"
-    site_bucket = "mysitebucketname.com"
+    source           = "savedra1/simple-site/aws"
+    version          = "0.0.1"
+    aws_region       = "us-west-1"
+    site_bucket      = "mysitebucketname.com"
     object_directory = "./example_objects"
 }
 
@@ -73,20 +75,21 @@ terraform {
     key    = "your/state-key/path"
     region = "your-aws-region"
   }
-}
+}zz
 
 module "static_site" {
-  source = "savedra1/simple-site/aws"
-  aws_region = "us-west-1"
-  site_bucket = "mysitebucketname.com"
-  object_directory = "./example_objects"
-  index_file_name = "home.html"
-  error_file_name = "404.html"
+  source              = "savedra1/simple-site/aws"
+  version             = "0.0.1"
+  aws_region          = "us-west-1"
+  site_bucket         = "mysitebucketname.com"
+  object_directory    = "./example_objects"
+  index_file_name     = "home.html"
+  error_file_name     = "404.html"
   available_locations = ["US", "CA", "GB", "DE", "FR"]
-  domain_name = "example.com"
-  domain_auto_renew = true
-  log_bucket = "my-log-bucket"
-  log_bucket_prefix = "cloudfront-logs"
+  domain_name         = "example.com"
+  domain_auto_renew   = true
+  log_bucket          = "my-log-bucket"
+  log_bucket_prefix   = "cloudfront-logs"
 }
 
 ``` 
@@ -233,6 +236,6 @@ Ensure the AWS user credentials used have the following permission scopes to all
 
 ## Cost
 
-The only cost incurred from using this module would be from the Route53 Hosted Zone, created to validate an ACM certificate when a custom domain is used. The cost for this is $0.5 per month. 
+The only cost incurred from using this module would be from the Route53 Hosted Zone, created to validate an ACM certificate when a custom domain is used. The cost for this is $0.50 per month. 
 
-All other infrastructure falls within the AWS free tier. However, there could be some edge-case scenarios that cause additional costs. For more details of this please review the pricing documentation for [s3](https://aws.amazon.com/pm/serv-s3/pricing) [Cloudfront](https://aws.amazon.com/cloudfront/pricing/) and [Route53](https://aws.amazon.com/route53/pricing/).  
+All other infrastructure falls within the AWS free tier. However, there could be some edge-case scenarios that cause additional costs. For more details of this please review the pricing documentation for [s3](https://aws.amazon.com/pm/serv-s3/pricing), [Cloudfront](https://aws.amazon.com/cloudfront/pricing/) and [Route53](https://aws.amazon.com/route53/pricing/).  
