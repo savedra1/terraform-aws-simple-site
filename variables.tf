@@ -82,7 +82,7 @@ variable "log_bucket" { # OPTIONAL
 
 variable "log_bucket_prefix" { # OPTIONAL
   type        = string
-  default     = ""
+  default     = "simple-site-logs"
   description = "The name for the directory in which the logs are stored within your specified log bucket."
 }
 
