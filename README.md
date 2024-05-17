@@ -61,8 +61,6 @@ module "static_site" {
     object_directory = "./example_objects"
 }
 
-
-
 ```
 
 ### Example using all inputs
