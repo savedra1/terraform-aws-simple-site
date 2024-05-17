@@ -31,7 +31,7 @@ terraform {
 }
 
 module "static_site" {
-    source = "terraform-aws-simple-site"
+    source = "savedra1/simple-site/aws"
     aws_region = "us-west-1"
     site_bucket = "mysitebucketname.com"
     object_directory = "./example_objects"
@@ -53,7 +53,7 @@ terraform {
 }
 
 module "static_site" {
-    source = "terraform-aws-simple-site"
+    source = "savedra1/simple-site/aws"
     aws_region = "us-west-1"
     site_bucket = "mysitebucketname.com"
     object_directory = "./example_objects"
@@ -76,7 +76,7 @@ terraform {
 }
 
 module "static_site" {
-  source = "terraform-aws-simple-site"
+  source = "savedra1/simple-site/aws"
   aws_region = "us-west-1"
   site_bucket = "mysitebucketname.com"
   object_directory = "./example_objects"
