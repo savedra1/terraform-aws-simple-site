@@ -1,8 +1,36 @@
-# TODO 
+# Simple site spin-up
 
-- Add logging option to raw cloudfront dist
-- Allowing changes (disabling logging/adding a custom domain)
+This Terraform module allows you to easily spin up a static site with HTTPS support hosted in AWS S3, served by AWS Cloudfront. If you choose to add a custom domain (managed by AWS Route 53), a hosted zone and ACM certification will be created and assigned. 
 
+The module is very easy to use and allows flexible configuration with optional inputs. 
+
+## Examples
+
+### With a custom domain
+
+```hcl
+# Backend setup
+terraform {
+  backend "s3" {
+    bucket = "your-state-bucket"
+    key    = "your/state-key/path"
+    region = "your-aws-region"
+  }
+}
+
+module "static_site" {
+    source = "terraform-aws-simple-site"
+    aws_region = "us-west-1"
+    site_bucket = "mysitebucketname.com"
+    object_directory = "./example_objects"
+    domain_name = "mydomainname.com"
+}
+
+```
+
+## Permissions
+
+Ensure the AWS user credentials used have the following permission scopes to allow all possible actions taken by this module:
 
 ```json
 {
