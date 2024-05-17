@@ -29,6 +29,15 @@ resource "aws_cloudfront_distribution" "cf_distribution" {
     max_ttl                = 86400
   }
 
+  dynamic "logging_config" { # Only apply this block if the enable_logging input is set to true
+    for_each = var.log_bucket != "" ? [1] : []
+    content {
+      include_cookies = false
+      bucket          = "${var.log_bucket}.s3.amazonaws.com"
+      prefix          = var.log_bucket_prefix
+    }
+  }
+
   price_class = "PriceClass_100"
 
   restrictions {

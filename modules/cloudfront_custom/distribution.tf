@@ -34,10 +34,11 @@ resource "aws_cloudfront_distribution" "cf_distribution" {
   }
 
   dynamic "logging_config" { # Only apply this block if the enable_logging input is set to true
-    for_each = var.log_bucket_name != "n/a" ? [1] : []
+    for_each = var.log_bucket != "" ? [1] : []
     content {
       include_cookies = false
-      bucket          = "${var.log_bucket_name}.s3.amazonaws.com"
+      bucket          = "${var.log_bucket}.s3.amazonaws.com"
+      prefix          = var.log_bucket_prefix
     }
   }
 

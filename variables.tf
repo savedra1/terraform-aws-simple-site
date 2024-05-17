@@ -1,9 +1,9 @@
 
 # INPUTS FOR THE MODULE
 
-variable "aws_region" {
+variable "aws_region" { # REQUIRED
   type        = string
-  default     = "eu-west-1"
+  default     = ""
   description = "The region to use for your AWS state management bucket and your site bucket in AWS S3."
   validation {
     condition = can(
@@ -16,9 +16,9 @@ variable "aws_region" {
   }
 }
 
-variable "site_bucket" {
+variable "site_bucket" { # REQUIRED
   type        = string
-  default     = "abiwithey.co.uk"
+  default     = ""
   description = "The name of the S3 bucket used for for hosting your static site. Note that if using a custom domain, the bucket should be named the same thing. Eg - name the bucket 'example.com' if that is the name of your domain."
   validation {
     condition     = var.site_bucket != ""
@@ -28,7 +28,7 @@ variable "site_bucket" {
 
 variable "object_directory" { # OPTIONAL
   type        = string
-  default     = "./objects"
+  default     = "./"
   description = "The path for where the files are stored for your S3 bucket. All files in this directory will be uploaded."
 }
 
@@ -60,7 +60,7 @@ variable "available_locations" { # OPTIONAL
 
 variable "domain_name" { # OPTIONAL
   type        = string
-  default     = "abiwithey.co.uk"
+  default     = ""
   description = "The privately owned qualified domain name. This must be managed by Route53."
   validation {
     condition     = can(regex("^$|^([a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\\.)+[a-zA-Z]{2,6}$", var.domain_name))
@@ -69,13 +69,20 @@ variable "domain_name" { # OPTIONAL
 }
 
 variable "domain_auto_renew" { # OPTIONAL
-  type = bool
-  default = true
-  description = "States whether to assign auto-renewal to the managed Route53 domain." 
+  type        = bool
+  default     = true
+  description = "States whether to assign auto-renewal to the managed Route53 domain."
 }
 
-variable "enable_logging" { # OPTIONAL
-  type = bool
-  default = false
-  description = "States whether to enable server logs for the static site."
+variable "log_bucket" { # OPTIONAL
+  type        = string
+  default     = ""
+  description = "The name of your existing s3 bucket, used for storing server logs."
 }
+
+variable "log_bucket_prefix" { # OPTIONAL
+  type        = string
+  default     = ""
+  description = "The name for the directory in which the logs are stored within your specified log bucket."
+}
+

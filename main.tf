@@ -18,12 +18,13 @@ module "cloudfront_with_domain" {
     module.acm.cert_arn,
     module.route53.cert_record
   ]
-  source          = "./modules/cloudfront_custom"
-  domain_name     = var.domain_name
-  cert_id         = module.acm[0].cert_arn[0]
-  regional_domain = module.s3.regional_domain
-  origin_id       = module.s3.origin_id
-  log_bucket_name = module.s3.log_bucket_name
+  source            = "./modules/cloudfront_custom"
+  domain_name       = var.domain_name
+  cert_id           = module.acm[0].cert_arn[0]
+  regional_domain   = module.s3.regional_domain
+  origin_id         = module.s3.origin_id
+  log_bucket        = var.log_bucket
+  log_bucket_prefix = var.log_bucket_prefix
 }
 
 # Route53
@@ -45,10 +46,12 @@ module "route53" {
 
 # AWS Cloudfront
 module "cloudfront_without_domain" {
-  count           = var.domain_name != "" ? 0 : 1
-  source          = "./modules/cloudfront_raw"
-  regional_domain = module.s3.regional_domain
-  origin_id       = module.s3.origin_id
+  count             = var.domain_name != "" ? 0 : 1
+  source            = "./modules/cloudfront_raw"
+  regional_domain   = module.s3.regional_domain
+  origin_id         = module.s3.origin_id
+  log_bucket        = var.log_bucket
+  log_bucket_prefix = var.log_bucket_prefix
 }
 
 # Site bucket
@@ -56,6 +59,5 @@ module "s3" {
   source           = "./modules/s3"
   site_bucket_name = var.site_bucket
   object_directory = var.object_directory
-  logging_enabled = var.enable_logging
 }
 

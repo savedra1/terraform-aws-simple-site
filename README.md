@@ -1,6 +1,7 @@
 # TODO 
 
-- Add logging option
+- Add logging option to raw cloudfront dist
+- Allowing changes (disabling logging/adding a custom domain)
 
 
 ```json
