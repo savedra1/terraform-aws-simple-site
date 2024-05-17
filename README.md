@@ -30,7 +30,7 @@ terraform {
   }
 }
 
-module "static_site" {
+module "simple_site" {
     source           = "savedra1/simple-site/aws"
     version          = "0.0.1"
     aws_region       = "us-west-1"
@@ -93,6 +93,18 @@ module "static_site" {
 }
 
 ``` 
+
+### Example outputs
+
+```hcl
+output "cloudfront_endpoint" {
+    value = module.simple_site.cloudfront_endpoint
+}
+
+output "custom_endpoint" {
+    value = module.simple_site.custom_endpoint 
+}
+```
 
 ## All Inputs & Outputs
 
