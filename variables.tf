@@ -38,7 +38,7 @@ variable "index_file_name" { # OPTION
   description = "(OPTIONAL) The file name for the index document of the static site. Default: 'index.html'"
   validation {
     condition     = can(regex("^[a-zA-Z0-9_\\-. ]+(\\.[a-zA-Z0-9]+)$", var.index_file_name))
-    error_message = "INVALID INDEX FILE | Please specifiy a valid filename for 'index_file_name' or do not include this to use the default 'index.html'"
+    error_message = "INVALID INDEX FILE | Please specify a valid filename for 'index_file_name' or do not include this to use the default 'index.html'"
   }
 }
 
@@ -48,7 +48,7 @@ variable "error_file_name" { # OPTIONAL
   description = "(OPTIONAL) The file name for the error document of the static site. Default: 'error.html'"
   validation {
     condition     = can(regex("^[a-zA-Z0-9_\\-. ]+(\\.[a-zA-Z0-9]+)$", var.error_file_name))
-    error_message = "INVALID ERROR FILE | Please specifiy a valid filename for 'error_file_name' or do not include this to use the default 'error.html'"
+    error_message = "INVALID ERROR FILE | Please specify a valid filename for 'error_file_name' or do not include this to use the default 'error.html'"
   }
 }
 
@@ -64,7 +64,7 @@ variable "domain_name" { # OPTIONAL
   description = "(OPTIONAL) The privately owned qualified domain name. This must be managed by Route53."
   validation {
     condition     = can(regex("^$|^([a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\\.)+[a-zA-Z]{2,6}$", var.domain_name))
-    error_message = "INVALID DOMAIN NAME | Please specifiy a valid domain name for 'domain_name' or exclude this var to use an auto-generated alias."
+    error_message = "INVALID DOMAIN NAME | Please specify a valid domain name for 'domain_name' or exclude this var to use an auto-generated alias."
   }
 }
 
