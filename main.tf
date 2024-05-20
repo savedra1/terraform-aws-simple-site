@@ -1,3 +1,7 @@
+# Determine which distribution arn to use for OAC policy 
+locals {
+  distribution_source_arn = var.domain_name == "" ? module.cloudfront_without_domain[0].dist_arn[0] : module.cloudfront_with_domain[0].dist_arn[0]
+}
 
 # Certificate manager
 module "acm" {
@@ -59,5 +63,6 @@ module "s3" {
   source           = "./modules/s3"
   site_bucket_name = var.site_bucket
   object_directory = var.object_directory
+  source_arn       = local.distribution_source_arn
 }
 

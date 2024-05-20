@@ -1,15 +1,11 @@
 output "bucket_zone_id" { # need this for the route53 record alias 
-    value = aws_s3_bucket.static_website.hosted_zone_id
+    value = aws_s3_bucket.static_site_bucket.hosted_zone_id
 }
 
 output "regional_domain" { # needed for cloudfront dist
-    value = aws_s3_bucket.static_website.bucket_regional_domain_name
+    value = aws_s3_bucket.static_site_bucket.bucket_regional_domain_name
 }
 
-output "origin_id" {       # needed for cloudfront dist
-    value = aws_s3_bucket.static_website.bucket_domain_name
+output "origin_id" {  # needed for cloudfront dist
+    value = aws_s3_bucket.static_site_bucket.bucket_domain_name
 }
-
-#output "log_bucket_name" {
-#    value = var.log_bucket != "" ? "logs-${var.site_bucket_name}" : "n/a"
-#}

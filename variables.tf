@@ -3,7 +3,7 @@
 
 variable "aws_region" { # REQUIRED
   type        = string
-  default     = ""
+  default     = "eu-west-1"
   description = "(REQUIRED) The region to use for your AWS state management bucket and your site bucket in AWS S3."
   validation {
     condition = can(
@@ -18,7 +18,7 @@ variable "aws_region" { # REQUIRED
 
 variable "site_bucket" { # REQUIRED
   type        = string
-  default     = ""
+  default     = "abiwithey.co.uk"
   description = "(REQUIRED) The name of the S3 bucket used for for hosting your static site. Note that if using a custom domain, the bucket should be named the same thing. Eg - name the bucket 'example.com' if that is the name of your domain."
   validation {
     condition     = var.site_bucket != ""
@@ -28,7 +28,7 @@ variable "site_bucket" { # REQUIRED
 
 variable "object_directory" { # OPTIONAL
   type        = string
-  default     = "./"
+  default     = "./example_objects"
   description = "(OPTIONAL) The path for where the files are stored for your S3 bucket. All files in this directory will be uploaded."
 }
 

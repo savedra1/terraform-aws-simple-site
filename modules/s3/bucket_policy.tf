@@ -1,32 +1,29 @@
-
 data "aws_iam_policy_document" "allow_public_read" {
   depends_on = [
-    aws_s3_bucket.static_website, 
-    aws_s3_bucket_public_access_block.static_website_public_access_block,
-    aws_s3_bucket_website_configuration.website_config
+    aws_s3_bucket.static_site_bucket
   ]
   statement {
-    sid       = "PublicReadGetObject"
+    sid       = "AllowCloudFrontServicePrincipalReadOnly"
     effect    = "Allow"
     actions   = ["s3:GetObject"]
-    resources = [
-      aws_s3_bucket.static_website.arn,  
-      "${aws_s3_bucket.static_website.arn}/*"
-    ]
-
+    resources = ["arn:aws:s3:::${aws_s3_bucket.static_site_bucket.bucket}/*"]
     principals {
-      identifiers = [aws_s3_bucket.static_website.id]
-      type        = "*"
+      type        = "Service"
+      identifiers = ["cloudfront.amazonaws.com"]
+    }
+    condition {
+      test     = "StringEquals"
+      variable = "AWS:SourceArn"
+      values   = [var.source_arn]
     }
   }
 }
 
 resource "aws_s3_bucket_policy" "allow_public_read" {
   depends_on = [
-    aws_s3_bucket.static_website, 
-    aws_s3_bucket_public_access_block.static_website_public_access_block,
-    aws_s3_bucket_website_configuration.website_config
+    aws_s3_bucket.static_site_bucket,
   ]
-  bucket = aws_s3_bucket.static_website.id
+  bucket = aws_s3_bucket.static_site_bucket.id
   policy = data.aws_iam_policy_document.allow_public_read.json
 }
+

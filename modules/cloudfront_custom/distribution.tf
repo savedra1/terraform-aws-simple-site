@@ -6,9 +6,7 @@ resource "aws_cloudfront_distribution" "cf_distribution" {
   origin {
     domain_name = var.regional_domain # the public endpoint for the website bucket
     origin_id   = var.origin_id
-    s3_origin_config {
-      origin_access_identity = aws_cloudfront_origin_access_identity.static_site.cloudfront_access_identity_path
-    }
+    origin_access_control_id = aws_cloudfront_origin_access_control.oac.id
   }
 
   aliases = [
@@ -52,11 +50,11 @@ resource "aws_cloudfront_distribution" "cf_distribution" {
   }
 
   viewer_certificate {
-    acm_certificate_arn      =  var.cert_id
+    acm_certificate_arn      = var.cert_id
     ssl_support_method       = "sni-only"
     minimum_protocol_version = "TLSv1.2_2021"
   }
 
-  http_version               = "http2"
+  http_version    = "http2"
   is_ipv6_enabled = true
 }

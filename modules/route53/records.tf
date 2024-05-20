@@ -10,8 +10,8 @@ resource "aws_route53_record" "cloudfront_record" {
   type    = "AAAA"
 
   alias {
-    name = var.cloudfront_endpoint
-    zone_id = var.cloudfront_zone_id
+    name                   = var.cloudfront_endpoint
+    zone_id                = var.cloudfront_zone_id
     evaluate_target_health = false
   }
 }

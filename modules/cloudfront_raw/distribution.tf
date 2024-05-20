@@ -1,4 +1,3 @@
-
 resource "aws_cloudfront_distribution" "cf_distribution" {
   enabled             = true
   default_root_object = "index.html"
@@ -6,9 +5,7 @@ resource "aws_cloudfront_distribution" "cf_distribution" {
   origin {
     domain_name = var.regional_domain # the public endpoint for the website bucket
     origin_id   = var.origin_id
-    s3_origin_config {
-      origin_access_identity = aws_cloudfront_origin_access_identity.static_site.cloudfront_access_identity_path
-    }
+    origin_access_control_id = aws_cloudfront_origin_access_control.oac.id
   }
 
   default_cache_behavior {
@@ -48,11 +45,11 @@ resource "aws_cloudfront_distribution" "cf_distribution" {
   }
 
   viewer_certificate {
-    cloudfront_default_certificate = true        
-    ssl_support_method       = "sni-only"
-    minimum_protocol_version = "TLSv1.2_2021"
+    cloudfront_default_certificate = true
+    ssl_support_method             = "sni-only"
+    minimum_protocol_version       = "TLSv1.2_2021"
   }
 
-  http_version               = "http2"
+  http_version    = "http2"
   is_ipv6_enabled = true
 }
