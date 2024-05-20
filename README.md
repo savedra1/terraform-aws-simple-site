@@ -21,7 +21,6 @@ You will need the following before using this module:
 ### Example with a custom domain
 
 ```hcl
-# Backend setup
 terraform {
   backend "s3" {
     bucket = "your-state-bucket"
@@ -44,7 +43,6 @@ module "simple_site" {
 ### Example without custom domain 
 
 ```hcl
-# Backend setup
 terraform {
   backend "s3" {
     bucket = "your-state-bucket"
@@ -68,14 +66,13 @@ module "static_site" {
 See [All Inputs & Outputs](#all-inputs--outputs)
 
 ```hcl
-# Backend setup
 terraform {
   backend "s3" {
     bucket = "your-state-bucket"
     key    = "your/state-key/path"
     region = "your-aws-region"
   }
-}zz
+}
 
 module "static_site" {
   source              = "savedra1/simple-site/aws"
