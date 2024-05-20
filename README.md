@@ -217,17 +217,17 @@ Ensure the AWS user credentials used have the following permission scopes to all
                 "cloudfront:GetDistribution",
                 "cloudfront:ListTagsForResource",
                 "cloudfront:TagResource",
-                "cloudfront:DeleteCloudFrontOriginAccessIdentity",
-                "cloudfront:GetCloudFrontOriginAccessIdentity",
-                "cloudfront:UpdateCloudFrontOriginAccessIdentity",
                 "cloudfront:UpdateDistribution",
                 "cloudfront:CreateDistribution",
                 "cloudfront:DeleteDistribution",
-                "cloudfront:CreateCloudFrontOriginAccessIdentity"
+                "cloudfront:CreateOriginAccessControl",
+				"cloudfront:DeleteOriginAccessControl",
+				"cloudfront:UpdateOriginAccessControl",
+                "cloudfront:GetOriginAccessControl"
             ],
             "Resource": [
                 "arn:aws:cloudfront::*:distribution/*",
-                "arn:aws:cloudfront::*:origin-access-identity/*"
+                "arn:aws:cloudfront::*:origin-access-control/*"
             ]
         },
         {
