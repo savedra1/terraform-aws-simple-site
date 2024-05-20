@@ -1,6 +1,6 @@
 # Simple site spin-up
 
-This Terraform module allows you to easily spin up a static site with HTTPS support hosted in AWS S3, served by AWS Cloudfront. If you choose to add a custom domain (managed by AWS Route 53), a hosted zone and ACM certification will be created and assigned. 
+This Terraform module allows you to easily spin up a static website hosted in AWS S3, served by AWS Cloudfront with TLS and `www.` support. If you choose to add a custom domain (managed by AWS Route 53), a hosted zone and ACM certification will be created and assigned.  
 
 The module is very easy to use and allows flexible configuration with optional inputs. 
 
@@ -29,7 +29,7 @@ terraform {
 
 module "simple_site" {
     source           = "savedra1/simple-site/aws"
-    version          = "0.0.4"
+    version          = "0.0.5"
     aws_region       = "us-west-1"
     site_bucket      = "mysitebucketname.com"
     object_directory = "./example_objects"
@@ -51,7 +51,7 @@ terraform {
 
 module "static_site" {
     source           = "savedra1/simple-site/aws"
-    version          = "0.0.4"
+    version          = "0.0.5"
     aws_region       = "us-west-1"
     site_bucket      = "mysitebucketname.com"
     object_directory = "./example_objects"
@@ -74,7 +74,7 @@ terraform {
 
 module "static_site" {
   source              = "savedra1/simple-site/aws"
-  version             = "0.0.4"
+  version             = "0.0.5"
   aws_region          = "us-west-1"
   site_bucket         = "mysitebucketname.com"
   object_directory    = "./example_objects"
